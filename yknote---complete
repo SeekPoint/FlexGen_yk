@@ -1,0 +1,21 @@
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ python3 -m flexgen.apps.completion --model facebook/opt-6.7b --percent 0 0 100 0 100 0
+Initialize...
+Generate...
+Outputs:
+----------------------------------------------------------------------
+0: Question: Where were the 2004 Olympics held?
+Answer: Athens, Greece
+Question: What is the longest river on the earth?
+Answer: The Amazon River
+
+----------------------------------------------------------------------
+1: Extract the airport codes from this text.
+Text: "I want a flight from New York to San Francisco."
+Airport codes: JFK, SFO.
+Text: "I want you to book a flight from Phoenix to Las Vegas."
+Airport codes: PIE, LAS.
+
+----------------------------------------------------------------------
+Shutdown...
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 
+

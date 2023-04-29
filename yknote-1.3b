@@ -1,0 +1,27 @@
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ python3 -m flexgen.flex_opt --model facebook/opt-1.3b --gpu-batch-size 1 --percent 100 0 100 0 100 0
+<run_flexgen>: args.model: facebook/opt-1.3b
+get_opt_config is: <function get_opt_config at 0x7f095d10e320>
+model size: 2.443 GB, cache size: 0.100 GB, hidden size (prefill): 0.002 GB
+init weight...
+warmup - generate
+benchmark - generate
+/home/ub2004/anaconda3/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py:283: UserWarning: torch.distributed.reduce_op is deprecated, please use torch.distributed.ReduceOp instead
+  warnings.warn(
+Outputs:
+----------------------------------------------------------------------
+0: Paris is the capital city of France. It is the most populous city in France, with an estimated population of 6,848,000 in 2016. It is the second most populous city
+----------------------------------------------------------------------
+0: Paris is the capital city of France. It is the most populous city in France, with an estimated population of 6,848,000 in 2016. It is the second most populous city
+----------------------------------------------------------------------
+
+TorchDevice: cuda:0
+  cur_mem: 2.6505 GB,  peak_mem: 2.8007 GB
+TorchDevice: cpu
+  cur_mem: 0.0000 GB,  peak_mem: 0.0000 GB
+model size: 2.443 GB	cache size: 0.100 GB	hidden size (p): 0.002 GB
+peak gpu mem: 2.801 GB	projected: False
+prefill latency: 0.224 s	prefill throughput: 2289.625 token/s
+decode latency: 0.641 s	decode throughput: 48.396 token/s
+total latency: 0.864 s	total throughput: 37.030 token/s
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 

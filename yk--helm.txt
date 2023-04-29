@@ -1,0 +1,102 @@
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ python3 -m flexgen.apps.helm_run --description mmlu:model=text,subject=abstract_algebra,data_augmentation=canonical --pad-to-seq-len 512 --model facebook/opt-30b --percent 20 80 0 100 0 100 --gpu-batch-size 2 --num-gpu-batches 1 --max-eval-instance 100
+[nltk_data] Error loading punkt: <urlopen error [Errno 111] Connection
+[nltk_data]     refused>
+RunSpec(name='mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical', scenario_spec=ScenarioSpec(class_name='helm.benchmark.scenarios.mmlu_scenario.MMLUScenario', args={'subject': 'abstract_algebra'}), adapter_spec=AdapterSpec(method='multiple_choice_joint', global_prefix='', instructions='The following are multiple choice questions (with answers) about abstract algebra.\n', input_prefix='Question: ', input_suffix='\n', reference_prefix='A. ', reference_suffix='\n', output_prefix='Answer: ', output_suffix='\n', instance_prefix='\n', substitutions=[], max_train_instances=5, max_eval_instances=100, num_outputs=5, num_train_trials=3, sample_train=True, model='ai21/j1-jumbo', temperature=0.0, max_tokens=5, stop_sequences=['\n'], random=None), metric_specs=[MetricSpec(class_name='helm.benchmark.basic_metrics.BasicMetric', args={'names': ['exact_match', 'quasi_exact_match', 'prefix_exact_match', 'quasi_prefix_exact_match']})], data_augmenter_spec=DataAugmenterSpec(perturbation_specs=[PerturbationSpec(class_name='helm.benchmark.augmentations.mild_mix_perturbation.MildMixPerturbation', args={}), PerturbationSpec(class_name='helm.benchmark.augmentations.dialect_perturbation.DialectPerturbation', args={'prob': 1.0, 'source_class': 'SAE', 'target_class': 'AAVE', 'mapping_file_path': None}), PerturbationSpec(class_name='helm.benchmark.augmentations.gender_perturbation.GenderPerturbation', args={'mode': 'pronouns', 'prob': 1.0, 'source_class': 'male', 'target_class': 'female', 'mapping_file_path': None, 'mapping_file_genders': None, 'bidirectional': False}), PerturbationSpec(class_name='helm.benchmark.augmentations.person_name_perturbation.PersonNamePerturbation', args={'prob': 1.0, 'source_class': {'race': 'white_american'}, 'target_class': {'race': 'black_american'}, 'name_file_path': None, 'person_name_type': 'first_name', 'preserve_gender': True})], should_augment_train_instances=False, should_include_original_train=True, should_skip_unchanged_train=True, should_augment_eval_instances=True, should_include_original_eval=True, should_skip_unchanged_eval=True, seeds_per_instance=1), groups=['mmlu'])
+ensure_file_downloaded {
+  Not downloading https://people.eecs.berkeley.edu/~hendrycks/data.tar because data/mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical/data already exists
+} [0.0s]
+data/mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical/data/auxiliary_train/abstract_algebra_auxiliary_train.csv doesn't exist, skipping
+Reading data/mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical/data/dev/abstract_algebra_dev.csv
+Reading data/mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical/data/val/abstract_algebra_val.csv
+Reading data/mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=ai21_j1-jumbo,data_augmentation=canonical/data/test/abstract_algebra_test.csv
+116 instances, 5 train instances, 100/111 eval instances
+DataPreprocessor.preprocess {
+  ensure_file_downloaded {
+    Not downloading https://worksheets.codalab.org/rest/bundles/0x3523e02bd46b42bcad783292b40b4e38/contents/blob/ because benchmark_output/perturbations/dialect/SAE_to_AAVE_mapping.json already exists
+  } [0.0s]
+  ensure_file_downloaded {
+    Not downloading https://worksheets.codalab.org/rest/bundles/0xa65e8f9a107c44f198eb4ad356bbda34/contents/blob/ because benchmark_output/perturbations/person_name/data/person_names.txt already exists
+  } [0.0s]
+  DataAugmenter.generate {
+    Parallelizing computation on 100 items over 4 threads {
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:00<00:00, 416.30it/s]
+    } [0.319s]
+    100 instances augmented to 280 instances
+  } [0.319s]
+} [0.413s]
+MultipleChoiceJointAdapter.adapt {
+  285 instances, choosing 5/5 train instances, 280 eval instances
+  Adapting with train_trial_index=0 {
+    Sampled 5 examples for trial #0.
+    Parallelizing computation on 280 items over 4 threads {
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 280/280 [00:00<00:00, 294.24it/s]
+    } [0.957s]
+    Sample prompts {
+      reference index = None, request_mode = None {
+        The following are multiple choice questions (with answers) about abstract algebra.
+        
+        Question: Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.
+        A. True, True
+        B. False, False
+        C. True, False
+        D. False, True
+        Answer: B
+        
+        Question: Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.
+        A. 0
+        B. 1
+        C. 2
+        D. 3
+        Answer: B
+        
+        Question: Find the characteristic of the ring 2Z.
+        A. 0
+        B. 3
+        C. 12
+        D. 30
+        Answer: A
+        
+        Question: Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.
+        A. True, True
+        B. False, False
+        C. True, False
+        D. False, True
+        Answer: A
+        
+        Question: Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.
+        A. True, True
+        B. False, False
+        C. True, False
+        D. False, True
+        Answer: C
+        
+        Question: Compute the product in the given ring. (12)(16) in Z_24
+        A. 0
+        B. 1
+        C. 4
+        D. 6
+        Answer:
+      } [0.0s]
+    } [0.0s]
+  } [0.957s]
+  Adapting with train_trial_index=1 {
+    Sampled 5 examples for trial #1.
+    Parallelizing computation on 280 items over 4 threads {
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 280/280 [00:01<00:00, 262.07it/s]
+    } [1.074s]
+  } [1.074s]
+  Adapting with train_trial_index=2 {
+    Sampled 5 examples for trial #2.
+    Parallelizing computation on 280 items over 4 threads {
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 280/280 [00:00<00:00, 295.41it/s]
+    } [0.954s]
+  } [0.954s]
+  840 requests
+} [2.987s]
+relevant_raw_request: {'temperature': 1e-07, 'num_return_sequences': 1, 'max_new_tokens': 1, 'top_p': 1, 'do_sample': True, 'return_dict_in_generate': True, 'output_scores': True}
+Max sequence length: 456, Pad to sequences length: 512
+Init weights begin.
+
+Killed
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 

@@ -1,0 +1,94 @@
+https://blog.csdn.net/weixin_39379635/article/details/129159713
+
+如何解决version `GLIBCXX_3.4.29‘ not found的问题
+
+
+ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/ub2004/anaconda3/lib/python3.10/site-packages/pandas/_libs/window/aggregations.cpython-310-x86_64-linux-gnu.so)
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ 
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ python
+Python 3.10.9 (main, Mar  1 2023, 18:23:06) [GCC 11.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> quit()
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
+GLIBCXX_3.4
+GLIBCXX_3.4.1
+GLIBCXX_3.4.2
+GLIBCXX_3.4.3
+GLIBCXX_3.4.4
+GLIBCXX_3.4.5
+GLIBCXX_3.4.6
+GLIBCXX_3.4.7
+GLIBCXX_3.4.8
+GLIBCXX_3.4.9
+GLIBCXX_3.4.10
+GLIBCXX_3.4.11
+GLIBCXX_3.4.12
+GLIBCXX_3.4.13
+GLIBCXX_3.4.14
+GLIBCXX_3.4.15
+GLIBCXX_3.4.16
+GLIBCXX_3.4.17
+GLIBCXX_3.4.18
+GLIBCXX_3.4.19
+GLIBCXX_3.4.20
+GLIBCXX_3.4.21
+GLIBCXX_3.4.22
+GLIBCXX_3.4.23
+GLIBCXX_3.4.24
+GLIBCXX_3.4.25
+GLIBCXX_3.4.26
+GLIBCXX_3.4.27
+GLIBCXX_3.4.28
+GLIBCXX_DEBUG_MESSAGE_LENGTH
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ sudo find / -name "libstdc++.so.6*"
+[sudo] password for ub2004: 
+find: ‘/run/user/1000/doc’: Permission denied
+find: ‘/run/user/1000/gvfs’: Permission denied
+find: ‘/run/user/125/gvfs’: Permission denied
+/opt/nvidia/nsight-systems/2022.1.3/host-linux-x64/libstdc++.so.6
+/opt/nvidia/nsight-compute/2022.2.0/host/linux-desktop-glibc_2_11_3-x64/libstdc++.so.6
+/snap/core20/1852/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+/snap/core20/1852/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+/snap/core20/1852/usr/share/gdb/auto-load/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28-gdb.py
+/snap/core20/1611/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+/snap/core20/1611/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+/snap/core20/1611/usr/share/gdb/auto-load/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28-gdb.py
+/usr/lib/i386-linux-gnu/libstdc++.so.6
+/usr/lib/i386-linux-gnu/libstdc++.so.6.0.28
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+/usr/share/gdb/auto-load/usr/lib/i386-linux-gnu/libstdc++.so.6.0.28-gdb.py
+/usr/share/gdb/auto-load/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28-gdb.py
+/home/ub2004/anaconda3/lib/libstdc++.so.6
+/home/ub2004/anaconda3/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/gh_P-tuning-v2/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_P-tuning-v2/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/dev_pytorch/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/dev_pytorch/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/minigpt4/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/minigpt4/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/gh_StableDiffusion/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_StableDiffusion/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/gh_ChatGLM-6B/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_ChatGLM-6B/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/sd-inf/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/sd-inf/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/sd-inf/nsight-compute/2022.3.0/host/linux-desktop-glibc_2_11_3-x64/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_lmflow/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_lmflow/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/envs/gh_deepspeed/lib/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_deepspeed/lib/libstdc++.so.6.0.30
+/home/ub2004/anaconda3/envs/gh_deepspeed/x86_64-conda-linux-gnu/sysroot/lib64/libstdc++.so.6
+/home/ub2004/anaconda3/envs/gh_deepspeed/x86_64-conda-linux-gnu/sysroot/lib64/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/pkgs/nsight-compute-2022.3.0.22-0/nsight-compute/2022.3.0/host/linux-desktop-glibc_2_11_3-x64/libstdc++.so.6
+/home/ub2004/anaconda3/pkgs/libstdcxx-ng-11.2.0-h1234567_1/lib/libstdc++.so.6
+/home/ub2004/anaconda3/pkgs/libstdcxx-ng-11.2.0-h1234567_1/lib/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/pkgs/gcc_impl_linux-64-11.2.0-h1234567_1/x86_64-conda-linux-gnu/sysroot/lib64/libstdc++.so.6
+/home/ub2004/anaconda3/pkgs/gcc_impl_linux-64-11.2.0-h1234567_1/x86_64-conda-linux-gnu/sysroot/lib64/libstdc++.so.6.0.29
+/home/ub2004/anaconda3/pkgs/libstdcxx-ng-12.2.0-h46fd767_19/lib/libstdc++.so.6
+/home/ub2004/anaconda3/pkgs/libstdcxx-ng-12.2.0-h46fd767_19/lib/libstdc++.so.6.0.30
+^C
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ sudo cp /home/ub2004/anaconda3/envs/dev_pytorch/lib/libstdc++.so.6.0.29 /usr/lib/x86_64-linux-gnu/
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$ sudo ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.29 /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+(base) ub2004@ub2004-B85M-A0:~/nndev/FlexGen_yk$
