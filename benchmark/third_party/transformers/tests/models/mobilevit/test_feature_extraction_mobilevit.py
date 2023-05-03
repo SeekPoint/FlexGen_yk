@@ -48,6 +48,7 @@ class MobileViTFeatureExtractionTester(unittest.TestCase):
         crop_size=18,
         do_flip_channel_order=True,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.num_channels = num_channels

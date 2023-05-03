@@ -82,6 +82,7 @@ def can_convert_to_float(string):
 
 class Plot:
     def __init__(self, args):
+        print('%s init', self.__classs__.__name__)
         self.args = args
         self.result_dict = defaultdict(lambda: dict(bsz=[], seq_len=[], result={}))
 

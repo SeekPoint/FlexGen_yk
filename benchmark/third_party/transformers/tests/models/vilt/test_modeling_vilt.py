@@ -83,6 +83,7 @@ class ViltModelTester:
         add_multiple_images=False,
         num_images=-1,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

@@ -73,6 +73,7 @@ class DeiTModelTester:
         scope=None,
         encoder_stride=2,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.image_size = image_size

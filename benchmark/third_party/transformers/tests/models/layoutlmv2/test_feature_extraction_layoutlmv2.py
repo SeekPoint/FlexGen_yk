@@ -46,6 +46,7 @@ class LayoutLMv2FeatureExtractionTester(unittest.TestCase):
         size=18,
         apply_ocr=True,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.num_channels = num_channels

@@ -72,6 +72,7 @@ class MobileViTFeatureExtractor(FeatureExtractionMixin, ImageFeatureExtractionMi
         do_flip_channel_order=True,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.do_resize = do_resize
         self.size = size

@@ -76,6 +76,7 @@ class Data2VecAudioModelTester:
         xvector_output_dim=32,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

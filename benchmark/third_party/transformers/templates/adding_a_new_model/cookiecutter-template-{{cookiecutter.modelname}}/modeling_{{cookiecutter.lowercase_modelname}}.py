@@ -143,6 +143,7 @@ class {{cookiecutter.camelcase_modelname}}Embeddings(nn.Module):
     """Construct the embeddings from word, position and token_type embeddings."""
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.word_embeddings = nn.Embedding(config.vocab_size, config.hidden_size, padding_idx=config.pad_token_id)
         self.position_embeddings = nn.Embedding(config.max_position_embeddings, config.hidden_size)
@@ -202,6 +203,7 @@ class {{cookiecutter.camelcase_modelname}}Embeddings(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertSelfAttention with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}SelfAttention(nn.Module):
     def __init__(self, config, position_embedding_type=None):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         if config.hidden_size % config.num_attention_heads != 0 and not hasattr(config, "embedding_size"):
             raise ValueError(
@@ -328,6 +330,7 @@ class {{cookiecutter.camelcase_modelname}}SelfAttention(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertSelfOutput with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}SelfOutput(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
         self.LayerNorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
@@ -343,6 +346,7 @@ class {{cookiecutter.camelcase_modelname}}SelfOutput(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertAttention with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}Attention(nn.Module):
     def __init__(self, config, position_embedding_type=None):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.self = {{cookiecutter.camelcase_modelname}}SelfAttention(config, position_embedding_type=position_embedding_type)
         self.output = {{cookiecutter.camelcase_modelname}}SelfOutput(config)
@@ -393,6 +397,7 @@ class {{cookiecutter.camelcase_modelname}}Attention(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertIntermediate with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}Intermediate(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.intermediate_size)
         if isinstance(config.hidden_act, str):
@@ -409,6 +414,7 @@ class {{cookiecutter.camelcase_modelname}}Intermediate(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertOutput with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}Output(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.intermediate_size, config.hidden_size)
         self.LayerNorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
@@ -424,6 +430,7 @@ class {{cookiecutter.camelcase_modelname}}Output(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertLayer with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}Layer(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.chunk_size_feed_forward = config.chunk_size_feed_forward
         self.seq_len_dim = 1
@@ -508,6 +515,7 @@ class {{cookiecutter.camelcase_modelname}}Layer(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertEncoder with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}Encoder(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.config = config
         self.layer = nn.ModuleList([{{cookiecutter.camelcase_modelname}}Layer(config) for _ in range(config.num_hidden_layers)])
@@ -606,6 +614,7 @@ class {{cookiecutter.camelcase_modelname}}Encoder(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertPredictionHeadTransform with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}PredictionHeadTransform(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
         if isinstance(config.hidden_act, str):
@@ -624,6 +633,7 @@ class {{cookiecutter.camelcase_modelname}}PredictionHeadTransform(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertLMPredictionHead with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}LMPredictionHead(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.transform = {{cookiecutter.camelcase_modelname}}PredictionHeadTransform(config)
 
@@ -645,6 +655,7 @@ class {{cookiecutter.camelcase_modelname}}LMPredictionHead(nn.Module):
 # Copied from transformers.models.bert.modeling_bert.BertOnlyMLMHead with Bert->{{cookiecutter.camelcase_modelname}}
 class {{cookiecutter.camelcase_modelname}}OnlyMLMHead(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.predictions = {{cookiecutter.camelcase_modelname}}LMPredictionHead(config)
 
@@ -768,6 +779,7 @@ class {{cookiecutter.camelcase_modelname}}Model({{cookiecutter.camelcase_modelna
     """
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.config = config
 
@@ -930,6 +942,7 @@ class {{cookiecutter.camelcase_modelname}}Model({{cookiecutter.camelcase_modelna
 @add_start_docstrings("""{{cookiecutter.modelname}} Model with a `language modeling` head on top. """, {{cookiecutter.uppercase_modelname}}_START_DOCSTRING)
 class {{cookiecutter.camelcase_modelname}}ForMaskedLM({{cookiecutter.camelcase_modelname}}PreTrainedModel):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
 
         if config.is_decoder:
@@ -1037,6 +1050,7 @@ class {{cookiecutter.camelcase_modelname}}ForCausalLM({{cookiecutter.camelcase_m
     _keys_to_ignore_on_load_missing = [r"position_ids", r"predictions.decoder.bias"]
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
 
         if not config.is_decoder:
@@ -1190,6 +1204,7 @@ class {{cookiecutter.camelcase_modelname}}ClassificationHead(nn.Module):
     """Head for sentence-level classification tasks."""
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
@@ -1214,6 +1229,7 @@ class {{cookiecutter.camelcase_modelname}}ClassificationHead(nn.Module):
 )
 class {{cookiecutter.camelcase_modelname}}ForSequenceClassification({{cookiecutter.camelcase_modelname}}PreTrainedModel):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.num_labels = config.num_labels
         self.{{cookiecutter.lowercase_modelname}} = {{cookiecutter.camelcase_modelname}}Model(config)
@@ -1306,6 +1322,7 @@ class {{cookiecutter.camelcase_modelname}}ForSequenceClassification({{cookiecutt
 )
 class {{cookiecutter.camelcase_modelname}}ForMultipleChoice({{cookiecutter.camelcase_modelname}}PreTrainedModel):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
 
         self.{{cookiecutter.lowercase_modelname}} = {{cookiecutter.camelcase_modelname}}Model(config)
@@ -1396,6 +1413,7 @@ class {{cookiecutter.camelcase_modelname}}ForMultipleChoice({{cookiecutter.camel
 )
 class {{cookiecutter.camelcase_modelname}}ForTokenClassification({{cookiecutter.camelcase_modelname}}PreTrainedModel):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.num_labels = config.num_labels
 

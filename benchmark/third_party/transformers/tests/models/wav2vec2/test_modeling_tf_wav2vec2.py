@@ -129,6 +129,7 @@ class TFWav2Vec2ModelTester:
         do_stable_layer_norm=False,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

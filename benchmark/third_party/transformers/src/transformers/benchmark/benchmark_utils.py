@@ -256,6 +256,7 @@ def measure_peak_memory_cpu(function: Callable[[], None], interval=0.5, device_i
             """
 
             def __init__(self, process_id: int, child_connection: Connection, interval: float):
+                print('%s init', self.__classs__.__name__)
                 super().__init__()
                 self.process_id = process_id
                 self.interval = interval
@@ -604,6 +605,7 @@ class Benchmark(ABC):
     framework: str
 
     def __init__(self, args: BenchmarkArguments = None, configs: PretrainedConfig = None):
+        print('%s init', self.__classs__.__name__)
         self.args = args
         if configs is None:
             self.config_dict = {

@@ -94,6 +94,7 @@ class TFMobileViTConvLayer(tf.keras.layers.Layer):
         use_activation: Union[bool, str] = True,
         **kwargs
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         logger.warning(
             f"\n{self.__class__.__name__} has backpropagation operations that are NOT supported on CPU. If you wish "
@@ -150,6 +151,7 @@ class TFMobileViTInvertedResidual(tf.keras.layers.Layer):
     def __init__(
         self, config: MobileViTConfig, in_channels: int, out_channels: int, stride: int, dilation: int = 1, **kwargs
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         expanded_channels = make_divisible(int(round(in_channels * config.expand_ratio)), 8)
 
@@ -200,6 +202,7 @@ class TFMobileViTMobileNetLayer(tf.keras.layers.Layer):
         num_stages: int = 1,
         **kwargs
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         self.layers = []
@@ -222,6 +225,7 @@ class TFMobileViTMobileNetLayer(tf.keras.layers.Layer):
 
 class TFMobileViTSelfAttention(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         if hidden_size % config.num_attention_heads != 0:
@@ -274,6 +278,7 @@ class TFMobileViTSelfAttention(tf.keras.layers.Layer):
 
 class TFMobileViTSelfOutput(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.dense = tf.keras.layers.Dense(hidden_size, name="dense")
         self.dropout = tf.keras.layers.Dropout(config.hidden_dropout_prob)
@@ -286,6 +291,7 @@ class TFMobileViTSelfOutput(tf.keras.layers.Layer):
 
 class TFMobileViTAttention(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.attention = TFMobileViTSelfAttention(config, hidden_size, name="attention")
         self.dense_output = TFMobileViTSelfOutput(config, hidden_size, name="output")
@@ -301,6 +307,7 @@ class TFMobileViTAttention(tf.keras.layers.Layer):
 
 class TFMobileViTIntermediate(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.dense = tf.keras.layers.Dense(intermediate_size, name="dense")
         if isinstance(config.hidden_act, str):
@@ -316,6 +323,7 @@ class TFMobileViTIntermediate(tf.keras.layers.Layer):
 
 class TFMobileViTOutput(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.dense = tf.keras.layers.Dense(hidden_size, name="dense")
         self.dropout = tf.keras.layers.Dropout(config.hidden_dropout_prob)
@@ -329,6 +337,7 @@ class TFMobileViTOutput(tf.keras.layers.Layer):
 
 class TFMobileViTTransformerLayer(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.attention = TFMobileViTAttention(config, hidden_size, name="attention")
         self.intermediate = TFMobileViTIntermediate(config, hidden_size, intermediate_size, name="intermediate")
@@ -352,6 +361,7 @@ class TFMobileViTTransformerLayer(tf.keras.layers.Layer):
 
 class TFMobileViTTransformer(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, hidden_size: int, num_stages: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         self.layers = []
@@ -386,6 +396,7 @@ class TFMobileViTLayer(tf.keras.layers.Layer):
         dilation: int = 1,
         **kwargs
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.patch_width = config.patch_size
         self.patch_height = config.patch_size
@@ -530,6 +541,7 @@ class TFMobileViTLayer(tf.keras.layers.Layer):
 
 class TFMobileViTEncoder(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.config = config
 
@@ -633,6 +645,7 @@ class TFMobileViTMainLayer(tf.keras.layers.Layer):
     config_class = MobileViTConfig
 
     def __init__(self, config: MobileViTConfig, expand_output: bool = True, **kwargs):
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.config = config
         self.expand_output = expand_output
@@ -830,6 +843,7 @@ MOBILEVIT_INPUTS_DOCSTRING = r"""
 )
 class TFMobileViTModel(TFMobileViTPreTrainedModel):
     def __init__(self, config: MobileViTConfig, expand_output: bool = True, *inputs, **kwargs):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config, *inputs, **kwargs)
         self.config = config
         self.expand_output = expand_output
@@ -875,6 +889,7 @@ class TFMobileViTModel(TFMobileViTPreTrainedModel):
 )
 class TFMobileViTForImageClassification(TFMobileViTPreTrainedModel, TFSequenceClassificationLoss):
     def __init__(self, config: MobileViTConfig, *inputs, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(config, *inputs, **kwargs)
 
         self.num_labels = config.num_labels
@@ -933,6 +948,7 @@ class TFMobileViTForImageClassification(TFMobileViTPreTrainedModel, TFSequenceCl
 
 class TFMobileViTASPPPooling(tf.keras.layers.Layer):
     def __init__(self, config: MobileViTConfig, out_channels: int, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         self.global_pool = tf.keras.layers.GlobalAveragePooling2D(keepdims=True, name="global_pool")
@@ -961,6 +977,7 @@ class TFMobileViTASPP(tf.keras.layers.Layer):
     """
 
     def __init__(self, config: MobileViTConfig, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         out_channels = config.aspp_out_channels
@@ -1026,6 +1043,7 @@ class TFMobileViTDeepLabV3(tf.keras.layers.Layer):
     """
 
     def __init__(self, config: MobileViTConfig, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
         self.aspp = TFMobileViTASPP(config, name="aspp")
 
@@ -1056,6 +1074,7 @@ class TFMobileViTDeepLabV3(tf.keras.layers.Layer):
 )
 class TFMobileViTForSemanticSegmentation(TFMobileViTPreTrainedModel):
     def __init__(self, config: MobileViTConfig, **kwargs) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(config, **kwargs)
 
         self.num_labels = config.num_labels

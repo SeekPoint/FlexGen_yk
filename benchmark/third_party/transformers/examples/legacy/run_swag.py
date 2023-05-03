@@ -57,6 +57,7 @@ class SwagExample(object):
     """A single training/test example for the SWAG dataset."""
 
     def __init__(self, swag_id, context_sentence, start_ending, ending_0, ending_1, ending_2, ending_3, label=None):
+        print('%s init', self.__classs__.__name__)
         self.swag_id = swag_id
         self.context_sentence = context_sentence
         self.start_ending = start_ending
@@ -90,6 +91,7 @@ class SwagExample(object):
 
 class InputFeatures(object):
     def __init__(self, example_id, choices_features, label):
+        print('%s init', self.__classs__.__name__)
         self.example_id = example_id
         self.choices_features = [
             {"input_ids": input_ids, "input_mask": input_mask, "segment_ids": segment_ids}

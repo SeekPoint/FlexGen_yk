@@ -41,6 +41,7 @@ class ZeroShotImageClassificationPipeline(ChunkPipeline):
     """
 
     def __init__(self, **kwargs):
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         requires_backends(self, "vision")

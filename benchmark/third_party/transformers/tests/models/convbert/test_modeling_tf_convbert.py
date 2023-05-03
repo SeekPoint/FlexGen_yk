@@ -62,6 +62,7 @@ class TFConvBertModelTester:
         num_choices=4,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = 13
         self.seq_length = 7

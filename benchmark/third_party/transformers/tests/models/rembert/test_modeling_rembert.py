@@ -68,6 +68,7 @@ class RemBertModelTester:
         num_choices=4,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

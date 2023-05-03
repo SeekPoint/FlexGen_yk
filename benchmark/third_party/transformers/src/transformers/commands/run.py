@@ -57,6 +57,7 @@ def run_command_factory(args):
 
 class RunCommand(BaseTransformersCLICommand):
     def __init__(self, nlp: Pipeline, reader: PipelineDataFormat):
+        print('%s init', self.__classs__.__name__)
         self._nlp = nlp
         self._reader = reader
 

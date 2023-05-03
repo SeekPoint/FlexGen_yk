@@ -58,6 +58,7 @@ class FlaxRobertaModelTester(unittest.TestCase):
         initializer_range=0.02,
         num_choices=4,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

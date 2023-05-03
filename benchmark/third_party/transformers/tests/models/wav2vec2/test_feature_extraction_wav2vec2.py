@@ -56,6 +56,7 @@ class Wav2Vec2FeatureExtractionTester(unittest.TestCase):
         return_attention_mask=True,
         do_normalize=True,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.min_seq_length = min_seq_length

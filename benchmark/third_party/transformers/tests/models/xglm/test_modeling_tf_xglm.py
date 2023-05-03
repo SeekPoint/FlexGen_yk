@@ -57,6 +57,7 @@ class TFXGLMModelTester:
         max_position_embeddings=512,
         initializer_range=0.02,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

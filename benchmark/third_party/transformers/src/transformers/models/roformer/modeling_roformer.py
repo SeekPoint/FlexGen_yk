@@ -69,6 +69,7 @@ class RoFormerSinusoidalPositionalEmbedding(nn.Embedding):
     """This module produces sinusoidal positional embeddings of any length."""
 
     def __init__(self, num_positions: int, embedding_dim: int, padding_idx: Optional[int] = None) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(num_positions, embedding_dim)
         self.weight = self._init_weight(self.weight)
 
@@ -176,6 +177,7 @@ class RoFormerEmbeddings(nn.Module):
     """Construct the embeddings from word and token_type embeddings."""
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.word_embeddings = nn.Embedding(config.vocab_size, config.embedding_size, padding_idx=config.pad_token_id)
         self.token_type_embeddings = nn.Embedding(config.type_vocab_size, config.embedding_size)

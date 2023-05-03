@@ -69,6 +69,7 @@ class TFFunnelModelTester:
         scope=None,
         base=False,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.seq_length = seq_length

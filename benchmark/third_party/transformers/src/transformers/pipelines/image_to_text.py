@@ -38,6 +38,7 @@ class ImageToTextPipeline(Pipeline):
     """
 
     def __init__(self, *args, **kwargs):
+        print('%s init', self.__classs__.__name__)
         super().__init__(*args, **kwargs)
         requires_backends(self, "vision")
         self.check_model_type(

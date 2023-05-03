@@ -182,6 +182,7 @@ Confrontiamo il report al codice `models/t5/modeling_t5.py`:
 ```python
 class T5DenseGatedGeluDense(nn.Module):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.wi_0 = nn.Linear(config.d_model, config.d_ff, bias=False)
         self.wi_1 = nn.Linear(config.d_model, config.d_ff, bias=False)

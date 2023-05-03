@@ -45,6 +45,7 @@ class CircleCIJob:
     working_directory: str = "~/transformers"
 
     def __post_init__(self):
+        print('%s init', self.__classs__.__name__)
         # Deal with defaults for mutable attributes.
         if self.additional_env is None:
             self.additional_env = {}

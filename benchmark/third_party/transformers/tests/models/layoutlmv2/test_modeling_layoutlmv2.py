@@ -76,6 +76,7 @@ class LayoutLMv2ModelTester:
         scope=None,
         range_bbox=1000,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.num_channels = num_channels

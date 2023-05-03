@@ -79,6 +79,7 @@ class Speech2Text2SinusoidalPositionalEmbedding(nn.Module):
     """This module produces sinusoidal positional embeddings of any length."""
 
     def __init__(self, num_positions: int, embedding_dim: int, padding_idx: Optional[int] = None):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.offset = 2
         self.embedding_dim = embedding_dim
@@ -157,6 +158,7 @@ class Speech2Text2Attention(nn.Module):
         is_decoder: bool = False,
         bias: bool = True,
     ):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.embed_dim = embed_dim
         self.num_heads = num_heads
@@ -295,6 +297,7 @@ class Speech2Text2Attention(nn.Module):
 
 class Speech2Text2DecoderLayer(nn.Module):
     def __init__(self, config: Speech2Text2Config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.embed_dim = config.d_model
 
@@ -461,6 +464,7 @@ class Speech2Text2Decoder(Speech2Text2PreTrainedModel):
     """
 
     def __init__(self, config: Speech2Text2Config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.dropout = config.dropout
         self.layerdrop = config.decoder_layerdrop
@@ -732,6 +736,7 @@ class Speech2Text2DecoderWrapper(Speech2Text2PreTrainedModel):
     """
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.decoder = Speech2Text2Decoder(config)
 
@@ -746,6 +751,7 @@ class Speech2Text2DecoderWrapper(Speech2Text2PreTrainedModel):
 )
 class Speech2Text2ForCausalLM(Speech2Text2PreTrainedModel):
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         config = copy.deepcopy(config)
         config.is_decoder = True
         config.is_encoder_decoder = False

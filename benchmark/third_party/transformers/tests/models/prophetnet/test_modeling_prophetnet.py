@@ -70,7 +70,7 @@ class ProphetNetModelTester:
         disable_ngram_loss=False,
         scope=None,
     ):
-
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.encoder_seq_length = encoder_seq_length
@@ -567,6 +567,7 @@ class ProphetNetStandaloneDecoderModelTester:
         disable_ngram_loss=False,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.encoder_seq_length = encoder_seq_length
@@ -797,6 +798,7 @@ class ProphetNetStandaloneEncoderModelTester:
         disable_ngram_loss=False,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.encoder_seq_length = encoder_seq_length

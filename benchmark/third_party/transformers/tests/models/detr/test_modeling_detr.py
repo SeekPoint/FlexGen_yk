@@ -61,6 +61,7 @@ class DetrModelTester:
         n_targets=8,
         num_labels=91,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.is_training = is_training

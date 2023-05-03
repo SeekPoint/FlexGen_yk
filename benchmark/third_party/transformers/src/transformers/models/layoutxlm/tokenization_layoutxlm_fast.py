@@ -255,7 +255,7 @@ class LayoutXLMTokenizerFast(PreTrainedTokenizerFast):
             only_label_first_subword=only_label_first_subword,
             **kwargs,
         )
-
+        print('%s init', self.__classs__.__name__)
         self.vocab_file = vocab_file
         self.can_save_slow_tokenizer = False if not self.vocab_file else True
 

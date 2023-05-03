@@ -1683,6 +1683,7 @@ class FlaxLongT5PreTrainedModel(FlaxPreTrainedModel):
         _do_init: bool = True,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         module = self.module_class(config=config, dtype=dtype, **kwargs)
         super().__init__(config, module, input_shape=input_shape, seed=seed, dtype=dtype, _do_init=_do_init)
 

@@ -70,6 +70,7 @@ class TFMobileViTModelTester:
         num_labels=10,
         scope=None,
     ):
+        print('%s init', self.__classs__.__name__)
         self.parent = parent
         self.batch_size = batch_size
         self.image_size = image_size

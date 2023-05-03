@@ -39,6 +39,7 @@ class Speech2Text2Processor(ProcessorMixin):
     tokenizer_class = "Speech2Text2Tokenizer"
 
     def __init__(self, feature_extractor, tokenizer):
+        print('%s init', self.__classs__.__name__)
         super().__init__(feature_extractor, tokenizer)
         self.current_processor = self.feature_extractor
         self._in_target_context_manager = False

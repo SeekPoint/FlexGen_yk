@@ -139,6 +139,7 @@ class {{cookiecutter.camelcase_modelname}}Tokenizer(PreTrainedTokenizer):
             eos_token="<|endoftext|>",
             **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         bos_token = AddedToken(bos_token, lstrip=False, rstrip=False) if isinstance(bos_token, str) else bos_token
         eos_token = AddedToken(eos_token, lstrip=False, rstrip=False) if isinstance(eos_token, str) else eos_token
         unk_token = AddedToken(unk_token, lstrip=False, rstrip=False) if isinstance(unk_token, str) else unk_token
@@ -284,6 +285,7 @@ class {{cookiecutter.camelcase_modelname}}TokenizerFast(PreTrainedTokenizerFast)
             trim_offsets=True,
             **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         super().__init__(
             ByteLevelBPETokenizer(
                 vocab_file=vocab_file,

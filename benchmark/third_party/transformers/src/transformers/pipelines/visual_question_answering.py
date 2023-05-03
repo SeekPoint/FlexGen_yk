@@ -30,6 +30,7 @@ class VisualQuestionAnsweringPipeline(Pipeline):
     """
 
     def __init__(self, *args, **kwargs):
+        print('%s init', self.__classs__.__name__)
         super().__init__(*args, **kwargs)
         self.check_model_type(MODEL_FOR_VISUAL_QUESTION_ANSWERING_MAPPING)
 

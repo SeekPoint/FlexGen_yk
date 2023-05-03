@@ -190,6 +190,7 @@ dataset_name_mapping = {
 # so we jit it to be faster.
 class Transform(torch.nn.Module):
     def __init__(self, image_size, mean, std):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.transforms = torch.nn.Sequential(
             Resize([image_size], interpolation=InterpolationMode.BICUBIC),

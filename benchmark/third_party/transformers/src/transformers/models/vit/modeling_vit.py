@@ -65,6 +65,7 @@ class ViTEmbeddings(nn.Module):
     """
 
     def __init__(self, config: ViTConfig, use_mask_token: bool = False) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         self.cls_token = nn.Parameter(
@@ -153,6 +154,7 @@ class ViTPatchEmbeddings(nn.Module):
     """
 
     def __init__(self, config):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         image_size, patch_size = config.image_size, config.patch_size
         num_channels, hidden_size = config.num_channels, config.hidden_size
@@ -185,6 +187,7 @@ class ViTPatchEmbeddings(nn.Module):
 
 class ViTSelfAttention(nn.Module):
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         if config.hidden_size % config.num_attention_heads != 0 and not hasattr(config, "embedding_size"):
             raise ValueError(
@@ -250,6 +253,7 @@ class ViTSelfOutput(nn.Module):
     """
 
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
@@ -264,6 +268,7 @@ class ViTSelfOutput(nn.Module):
 
 class ViTAttention(nn.Module):
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.attention = ViTSelfAttention(config)
         self.output = ViTSelfOutput(config)
@@ -303,6 +308,7 @@ class ViTAttention(nn.Module):
 
 class ViTIntermediate(nn.Module):
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.intermediate_size)
         if isinstance(config.hidden_act, str):
@@ -320,6 +326,7 @@ class ViTIntermediate(nn.Module):
 
 class ViTOutput(nn.Module):
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(config.intermediate_size, config.hidden_size)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
@@ -337,6 +344,7 @@ class ViTLayer(nn.Module):
     """This corresponds to the Block class in the timm implementation."""
 
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.chunk_size_feed_forward = config.chunk_size_feed_forward
         self.seq_len_dim = 1
@@ -377,6 +385,7 @@ class ViTLayer(nn.Module):
 
 class ViTEncoder(nn.Module):
     def __init__(self, config: ViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.config = config
         self.layer = nn.ModuleList([ViTLayer(config) for _ in range(config.num_hidden_layers)])
@@ -444,6 +453,7 @@ class ViTPreTrainedModel(PreTrainedModel):
     supports_gradient_checkpointing = True
 
     def _init_weights(self, module: Union[nn.Linear, nn.Conv2d, nn.LayerNorm]) -> None:
+
         """Initialize the weights"""
         if isinstance(module, (nn.Linear, nn.Conv2d)):
             module.weight.data = nn.init.trunc_normal_(module.weight.data, mean=0.0, std=self.config.initializer_range)

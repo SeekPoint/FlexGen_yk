@@ -176,6 +176,7 @@ class AutoProcessor:
         >>> # If processor files are in a directory (e.g. processor was saved using *save_pretrained('./test/saved_model/')*)
         >>> processor = AutoProcessor.from_pretrained("./test/saved_model/")
         ```"""
+        print('%s init', self.__classs__.__name__)
         config = kwargs.pop("config", None)
         trust_remote_code = kwargs.pop("trust_remote_code", False)
         kwargs["_from_auto"] = True

@@ -5,6 +5,7 @@ from torch.utils.data import Dataset, IterableDataset
 
 class PipelineDataset(Dataset):
     def __init__(self, dataset, process, params):
+        print('%s init', self.__classs__.__name__)
         self.dataset = dataset
         self.process = process
         self.params = params
@@ -46,6 +47,7 @@ class PipelineIterator(IterableDataset):
                 item = items[i]
                 yield infer(item, **params)
         ```"""
+        print('%s init', self.__classs__.__name__)
         self.loader = loader
         self.infer = infer
         self.params = params
@@ -157,6 +159,7 @@ class PipelineChunkIterator(PipelineIterator):
                     params (`dict`):
                         The parameters passed to `infer` along with every item
         """
+        print('%s init', self.__classs__.__name__)
         super().__init__(loader, infer, params)
 
     def __iter__(self):
@@ -285,6 +288,7 @@ class PipelinePackIterator(PipelineIterator):
 
 class KeyDataset(Dataset):
     def __init__(self, dataset: Dataset, key: str):
+        print('%s init', self.__classs__.__name__)
         self.dataset = dataset
         self.key = key
 
@@ -297,6 +301,7 @@ class KeyDataset(Dataset):
 
 class KeyPairDataset(Dataset):
     def __init__(self, dataset: Dataset, key1: str, key2: str):
+        print('%s init', self.__classs__.__name__)
         self.dataset = dataset
         self.key1 = key1
         self.key2 = key2

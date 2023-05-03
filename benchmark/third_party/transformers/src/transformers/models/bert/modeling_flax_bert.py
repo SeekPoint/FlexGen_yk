@@ -775,6 +775,7 @@ class FlaxBertPreTrainedModel(FlaxPreTrainedModel):
         gradient_checkpointing: bool = False,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         module = self.module_class(
             config=config,
             dtype=dtype,

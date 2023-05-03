@@ -6,6 +6,7 @@ import torch
 
 class DSClipEncoder(torch.nn.Module):
     def __init__(self, enc, enable_cuda_graph=False):
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         enc.text_model._build_causal_attention_mask = self._build_causal_attention_mask
         self.enc = enc

@@ -100,6 +100,7 @@ class MobileViTConvLayer(nn.Module):
         use_normalization: bool = True,
         use_activation: Union[bool, str] = True,
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         padding = int((kernel_size - 1) / 2) * dilation
 
@@ -158,6 +159,7 @@ class MobileViTInvertedResidual(nn.Module):
     def __init__(
         self, config: MobileViTConfig, in_channels: int, out_channels: int, stride: int, dilation: int = 1
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         expanded_channels = make_divisible(int(round(in_channels * config.expand_ratio)), 8)
 
@@ -202,6 +204,7 @@ class MobileViTMobileNetLayer(nn.Module):
     def __init__(
         self, config: MobileViTConfig, in_channels: int, out_channels: int, stride: int = 1, num_stages: int = 1
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         self.layer = nn.ModuleList()
@@ -223,6 +226,7 @@ class MobileViTMobileNetLayer(nn.Module):
 
 class MobileViTSelfAttention(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         if hidden_size % config.num_attention_heads != 0:
@@ -274,6 +278,7 @@ class MobileViTSelfAttention(nn.Module):
 
 class MobileViTSelfOutput(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(hidden_size, hidden_size)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
@@ -286,6 +291,7 @@ class MobileViTSelfOutput(nn.Module):
 
 class MobileViTAttention(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.attention = MobileViTSelfAttention(config, hidden_size)
         self.output = MobileViTSelfOutput(config, hidden_size)
@@ -317,6 +323,7 @@ class MobileViTAttention(nn.Module):
 
 class MobileViTIntermediate(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(hidden_size, intermediate_size)
         if isinstance(config.hidden_act, str):
@@ -332,6 +339,7 @@ class MobileViTIntermediate(nn.Module):
 
 class MobileViTOutput(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.dense = nn.Linear(intermediate_size, hidden_size)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
@@ -345,6 +353,7 @@ class MobileViTOutput(nn.Module):
 
 class MobileViTTransformerLayer(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int, intermediate_size: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.attention = MobileViTAttention(config, hidden_size)
         self.intermediate = MobileViTIntermediate(config, hidden_size, intermediate_size)
@@ -364,6 +373,7 @@ class MobileViTTransformerLayer(nn.Module):
 
 class MobileViTTransformer(nn.Module):
     def __init__(self, config: MobileViTConfig, hidden_size: int, num_stages: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         self.layer = nn.ModuleList()
@@ -396,6 +406,7 @@ class MobileViTLayer(nn.Module):
         num_stages: int,
         dilation: int = 1,
     ) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.patch_width = config.patch_size
         self.patch_height = config.patch_size
@@ -544,6 +555,7 @@ class MobileViTLayer(nn.Module):
 
 class MobileViTEncoder(nn.Module):
     def __init__(self, config: MobileViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.config = config
 
@@ -662,6 +674,7 @@ class MobileViTPreTrainedModel(PreTrainedModel):
     supports_gradient_checkpointing = True
 
     def _init_weights(self, module: Union[nn.Linear, nn.Conv2d, nn.LayerNorm]) -> None:
+        print('%s init', self.__classs__.__name__)
         """Initialize the weights"""
         if isinstance(module, (nn.Linear, nn.Conv2d)):
             # Slightly different from the TF version which uses truncated_normal for initialization
@@ -708,6 +721,7 @@ MOBILEVIT_INPUTS_DOCSTRING = r"""
 )
 class MobileViTModel(MobileViTPreTrainedModel):
     def __init__(self, config: MobileViTConfig, expand_output: bool = True):
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
         self.config = config
         self.expand_output = expand_output
@@ -803,6 +817,7 @@ class MobileViTModel(MobileViTPreTrainedModel):
 )
 class MobileViTForImageClassification(MobileViTPreTrainedModel):
     def __init__(self, config: MobileViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
 
         self.num_labels = config.num_labels
@@ -882,6 +897,7 @@ class MobileViTForImageClassification(MobileViTPreTrainedModel):
 
 class MobileViTASPPPooling(nn.Module):
     def __init__(self, config: MobileViTConfig, in_channels: int, out_channels: int) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         self.global_pool = nn.AdaptiveAvgPool2d(output_size=1)
@@ -910,6 +926,7 @@ class MobileViTASPP(nn.Module):
     """
 
     def __init__(self, config: MobileViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
 
         in_channels = config.neck_hidden_sizes[-2]
@@ -969,6 +986,7 @@ class MobileViTDeepLabV3(nn.Module):
     """
 
     def __init__(self, config: MobileViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__()
         self.aspp = MobileViTASPP(config)
 
@@ -999,6 +1017,7 @@ class MobileViTDeepLabV3(nn.Module):
 )
 class MobileViTForSemanticSegmentation(MobileViTPreTrainedModel):
     def __init__(self, config: MobileViTConfig) -> None:
+        print('%s init', self.__classs__.__name__)
         super().__init__(config)
 
         self.num_labels = config.num_labels

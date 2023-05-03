@@ -140,6 +140,7 @@ class PegasusXConfig(PretrainedConfig):
         stagger_local_blocks=True,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         self.vocab_size = vocab_size
         self.max_position_embeddings = max_position_embeddings
         self.d_model = d_model

@@ -525,6 +525,7 @@ class AutoTokenizer:
         >>> # Download vocabulary from huggingface.co and define model-specific arguments
         >>> tokenizer = AutoTokenizer.from_pretrained("roberta-base", add_prefix_space=True)
         ```"""
+        print('%s init', self.__classs__.__name__)
         config = kwargs.pop("config", None)
         kwargs["_from_auto"] = True
 

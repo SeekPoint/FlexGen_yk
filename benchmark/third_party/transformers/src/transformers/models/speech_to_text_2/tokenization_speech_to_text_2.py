@@ -110,6 +110,7 @@ class Speech2Text2Tokenizer(PreTrainedTokenizer):
         merges_file=None,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         super().__init__(
             unk_token=unk_token,
             bos_token=bos_token,

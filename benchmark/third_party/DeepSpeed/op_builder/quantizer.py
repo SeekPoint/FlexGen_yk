@@ -6,6 +6,7 @@ class QuantizerBuilder(CUDAOpBuilder):
     NAME = "quantizer"
 
     def __init__(self, name=None):
+        print('%s init', self.__classs__.__name__)
         name = self.NAME if name is None else name
         super().__init__(name=name)
 

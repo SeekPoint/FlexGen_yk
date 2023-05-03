@@ -138,6 +138,7 @@ class MobileViTConfig(PretrainedConfig):
         semantic_loss_ignore_index=255,
         **kwargs
     ):
+        print('%s init', self.__classs__.__name__)
         super().__init__(**kwargs)
 
         self.num_channels = num_channels
